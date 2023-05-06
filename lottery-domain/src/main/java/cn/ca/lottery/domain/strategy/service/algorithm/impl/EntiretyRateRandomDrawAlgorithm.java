@@ -10,8 +10,8 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 //@Component("defaultRateRandomDrawAlgorithm")
-@Component("defaultRateRandomDrawAlgorithm")
-public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
+@Component("entiretyRateRandomDrawAlgorithm")
+public class EntiretyRateRandomDrawAlgorithm extends BaseAlgorithm {
     @Override
     public String RandomDraw(Long strategyId, List<String> excludeAwardIds) {
         BigDecimal differenceDenominator = BigDecimal.ZERO;

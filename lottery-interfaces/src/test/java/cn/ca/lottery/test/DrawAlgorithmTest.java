@@ -1,8 +1,12 @@
 package cn.ca.lottery.test;
 
 
+import cn.ca.lottery.domain.strategy.model.req.DrawReq;
+import cn.ca.lottery.domain.strategy.model.res.DrawResult;
 import cn.ca.lottery.domain.strategy.model.vo.AwardRateInfo;
+import cn.ca.lottery.domain.strategy.service.Draw.IDrawExec;
 import cn.ca.lottery.domain.strategy.service.algorithm.IDrawAlgorithm;
+import cn.hutool.json.JSONUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +28,8 @@ public class DrawAlgorithmTest {
 //    @Resource(name = "defaultRateRandomDrawAlgorithm")
     @Resource(name = "singleRateRandomDrawAlgorithm")
     private IDrawAlgorithm randomDrawAlgorithm;
+    @Resource
+    private IDrawExec drawExec;
     @Before
     public void init() {
         // 奖品信息
@@ -41,13 +47,10 @@ public class DrawAlgorithmTest {
     @Test
     public void test_randomDrawAlgorithm() {
 
-        List<String> excludeAwardIds = new ArrayList<>();
-        excludeAwardIds.add("二等奖：iphone");
-        excludeAwardIds.add("四等奖：AirPods");
-
-        for (int i = 0; i < 20; i++) {
-            System.out.println("中奖结果：" + randomDrawAlgorithm.RandomDraw(100001L, excludeAwardIds));
+        DrawReq drawReq = new DrawReq("1", 10001L);
+        for (int i = 0; i < 100; i++) {
+            DrawResult drawResult = drawExec.doDrawExec(drawReq);
+            System.out.println("中奖结果：" + JSONUtil.parse(drawResult));
         }
-
     }
 }

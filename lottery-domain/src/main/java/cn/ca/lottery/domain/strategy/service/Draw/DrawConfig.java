@@ -1,5 +1,6 @@
 package cn.ca.lottery.domain.strategy.service.Draw;
 
+import cn.ca.lottery.common.Constants;
 import cn.ca.lottery.domain.strategy.service.algorithm.IDrawAlgorithm;
 import lombok.CustomLog;
 import lombok.Data;
@@ -14,8 +15,8 @@ import java.util.HashMap;
  */
 @Data
 public class DrawConfig {
-    @Resource(name = "defaultRateRandomDrawAlgorithm")
-    private IDrawAlgorithm defaultRateRandomDrawAlgorithm;
+    @Resource(name = "entiretyRateRandomDrawAlgorithm")
+    private IDrawAlgorithm entiretyRateRandomDrawAlgorithm;
     @Resource(name = "singleRateRandomDrawAlgorithm")
     private IDrawAlgorithm singleRateRandomDrawAlgorithm;
     //封装两种策略
@@ -23,7 +24,7 @@ public class DrawConfig {
 
     @PostConstruct
     public void init(){
-        StrategyMode.put(1,defaultRateRandomDrawAlgorithm);
-        StrategyMode.put(2,singleRateRandomDrawAlgorithm);
+        StrategyMode.put(Constants.StrategyMode.ENTIRETY.getCode(), entiretyRateRandomDrawAlgorithm);
+        StrategyMode.put(Constants.StrategyMode.SINGLE.getCode(), singleRateRandomDrawAlgorithm);
     }
 }

@@ -3,7 +3,7 @@
 <mapper namespace="cn.ca.lottery.infrastructure.dao.IActivityDao">
     <insert id="insert">
         INSERT INTO activity
-        (activityId, activityName, activityDesc, beginDateTime, endDateTime,
+        (activity_id, activityName, activityDesc, beginDateTime, endDateTime,
          stockCount, takeCount, state, creator, createTime, updateTime)
         VALUES
             (#{activityId}, #{activityName}, #{activityDesc}, #{beginDateTime}, #{endDateTime},

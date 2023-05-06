@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface IStrategyDetailDao {
     List<StrategyDetail> queryStrategyDetails(Long strategyId);
+    List<String> queryNoStockStrategyAwardList(Long strategyId);
+    int deductAwardStock(StrategyDetail strategyDetail);
 }
